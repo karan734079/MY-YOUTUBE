@@ -22,7 +22,7 @@ const SearchResults = () => {
         setError(null);
         try {
             const response = await axios.get(
-                `${conf.searchResultApi}${encodeURIComponent(query)}&key=${conf.googleApi}&pageToken=${pageToken}`
+                `${"https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q="}${encodeURIComponent(query)}&key=${conf.googleApi}&pageToken=${pageToken}`
             );
             setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
             setNextPageToken(response.data.nextPageToken);
