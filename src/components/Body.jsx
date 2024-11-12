@@ -7,7 +7,6 @@ const Body = () => {
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
   const location = useLocation();
 
-  // Check if the current path is WatchPage
   const isWatchPage = location.pathname.startsWith('/watch');
 
   return (
