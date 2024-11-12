@@ -4,23 +4,31 @@ import Videocard from './Videocard';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import conf from '../utils/conf';
+import { useSelector } from 'react-redux';
 
 const VideoContainer = () => { 
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextPageToken, setNextPageToken] = useState(null);
+  
+  const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
 
-  useEffect(() => {
-      getVideos(); 
+  const getVideos = useCallback(async (pageToken = '') => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${conf.youtubeVideoApi}${conf.googleApi}&pageToken=${pageToken}`);
+      setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
+      setNextPageToken(response.data.nextPageToken);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const getVideos = async (pageToken = '') => {
-    setLoading(true);
-    const response = await axios.get(`${conf.youtubeVideoApi}${conf.googleApi}&pageToken=${pageToken}`);
-    setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
-    setNextPageToken(response.data.nextPageToken);
-    setLoading(false);
-  };
+  useEffect(() => {
+    getVideos(); 
+  }, [getVideos]);
 
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
@@ -30,7 +38,7 @@ const VideoContainer = () => {
     if (scrollY + windowHeight >= documentHeight - 100 && nextPageToken) {
       getVideos(nextPageToken);
     }
-  }, [nextPageToken]);
+  }, [nextPageToken, getVideos]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -41,9 +49,11 @@ const VideoContainer = () => {
 
   return (
     <div>
-      {loading && videos.length === 0 ? <Shimmer /> : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-2">
-          {videos.map((video , index) => (
+      {loading && videos.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${isMenuOpen ? 'lg:grid-cols-4' : 'lg:grid-cols-5'} gap-4 p-2`}>
+          {videos.map((video, index) => (
             <Link key={index} to={`/watch?v=${video.id}`}>
               <Videocard videoData={video} />
             </Link>

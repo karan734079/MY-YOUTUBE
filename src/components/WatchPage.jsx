@@ -11,11 +11,11 @@ const WatchPage = () => {
 
   useEffect(() => {
     dispatch(closeMenu());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
-    <>
+    <div className="">
       <div className='flex flex-col w-full m-2'>
       <div className='px-5 flex w-full'>
        <div>
@@ -29,7 +29,7 @@ const WatchPage = () => {
         <CommentsContainer />
       </div>
       </div>
-    </>
+    </div>
   )
 }
 

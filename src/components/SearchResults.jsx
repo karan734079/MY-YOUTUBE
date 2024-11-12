@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import conf from '../utils/conf';
 import Shimmer from '../components/Shimmer';
+import { useSelector } from 'react-redux';
 
 const SearchResults = () => {
     const [searchParams] = useSearchParams();
@@ -11,6 +12,7 @@ const SearchResults = () => {
     const [error, setError] = useState(null);
     const [nextPageToken, setNextPageToken] = useState(null);
     const query = searchParams.get('q');
+    const isMenuOpen = useSelector((state)=> state.app.isMenuOpen)
 
     useEffect(() => {
         fetchResults();
@@ -57,13 +59,13 @@ const SearchResults = () => {
     return loading && videos.length === 0 ? (
         <Shimmer />
     ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-2">
-            {videos.map((video) => {
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${isMenuOpen ? 'lg:grid-cols-4' : 'lg:grid-cols-5'} gap-4 p-2`}>
+            {videos.map((video , index) => {
                 const { snippet } = video;
                 const { channelTitle, thumbnails, title } = snippet;
 
                 return (
-                    <Link key={video.id.videoId} to={`/watch?v=${video.id.videoId}`}>
+                    <Link key={index} to={`/watch?v=${video.id.videoId}`}>
                         <div className="max-w-xs bg-white rounded-lg shadow-md cursor-pointer overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg duration-300">
                             <img
                                 src={thumbnails?.medium?.url || '/path/to/default-image.jpg'}
