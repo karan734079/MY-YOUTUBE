@@ -60,7 +60,7 @@ const RelatedVideosContainer = ({ videoId }) => {
     return (
         <div className="max-w-7xl mx-auto">
             <h1 className="text-2xl font-bold">Related Videos :</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 rounded-lg lg:grid-cols-1 gap-6 p-1 max-h-[2200px] overflow-y-scroll overflow-x-hidden scrollbar-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 rounded-lg lg:grid-cols-1 gap-6 p-1 max-h-[2200px] overflow-y-scroll overflow-x-hidden scrollbar-hidden">
                 {videos.map((video, index) => (
                     <Link key={index} to={`/watch?v=${video.id}`}>
                         <Videocard1 videoData={video} />
