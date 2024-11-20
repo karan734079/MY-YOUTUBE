@@ -8,8 +8,8 @@ const Videocard = ({ videoData }) => {
       return (views / 1e9).toFixed(1) + 'B';
     } else if (views >= 1e6) {
       return (views / 1e6).toFixed(1) + 'M';
-    }else if(views >= 1e4){
-      
+    } else if (views >= 1e4) {
+      return (views / 1e4).toFixed(1) + 'K';
     }
     return views;
   };

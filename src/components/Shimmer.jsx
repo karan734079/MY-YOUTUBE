@@ -14,7 +14,7 @@ const VideoCardShimmer = () => {
 };
 
 const Shimmer = () => {
-    const shimmerCards = Array.from({ length: 20 }, (_, index) => <VideoCardShimmer key={index} />);
+    const shimmerCards = Array.from({ length: 20 }, (index) => <VideoCardShimmer key={index} />);
 
     return (
         <div className="container mx-auto p-4">

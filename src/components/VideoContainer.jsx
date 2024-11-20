@@ -60,7 +60,6 @@ const VideoContainer = () => {
           ))}
         </div>
       )}
-      {loading && videos.length > 0 && <Shimmer />}
     </div>
   );
 };
