@@ -38,18 +38,18 @@ const LiveChat = () => {
 
   return (
     <div className='flex flex-col h-full'>
-      <div className='w-full h-[550px] rounded-2xl ml-2 p-2 border border-gray-200 bg-gray-200 overflow-y-auto flex flex-col-reverse'>
+      <div className='w-full h-[550px] ml-2 p-2 overflow-y-auto flex flex-col-reverse'>
         {chatMessages.map((chat, index) => (
           <ChatMessage name={chat.name} message={chat.message} key={index} logo={chat.logo} emoji={chat.emoji} />
         ))}
       </div>
-      <form className='flex items-center p-2 border-t border-gray-300 bg-white' onSubmit={handleSendMessage}>
+      <form className='flex items-center p-2 border-gray-300 bg-white' onSubmit={handleSendMessage}>
         <input
           type='text'
           value={userMessage}
           onChange={(e) => setUserMessage(e.target.value)}
           placeholder='Type your message...'
-          className='flex-grow p-2 rounded-md border focus:outline-none focus:ring-1 focus:ring-black'
+          className='flex-grow p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-black'
         />
         <button
           className='ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600'

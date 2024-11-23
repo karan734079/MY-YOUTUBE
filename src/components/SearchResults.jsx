@@ -2,8 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import conf from '../utils/conf';
-import Shimmer from '../components/Shimmer';
-import { useSelector } from 'react-redux';
+import ShimmerForSerachResults from './ShimmerForSerachResults';
 
 const SearchResults = () => {
     const [searchParams] = useSearchParams();
@@ -12,12 +11,11 @@ const SearchResults = () => {
     const [error, setError] = useState(null);
     const [nextPageToken, setNextPageToken] = useState(null);
     const query = searchParams.get('q');
-    const isMenuOpen = useSelector((state)=> state.app.isMenuOpen)
 
     useEffect(() => {
         fetchResults();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [query]); 
+    }, [query]);
 
     const fetchResults = async (pageToken = '') => {
         setLoading(true);
@@ -44,7 +42,7 @@ const SearchResults = () => {
         if (scrollY + windowHeight >= documentHeight - 100 && nextPageToken) {
             fetchResults(nextPageToken);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nextPageToken]);
 
     useEffect(() => {
@@ -57,31 +55,35 @@ const SearchResults = () => {
     if (error) return <div>{error}</div>;
 
     return loading && videos.length === 0 ? (
-        <Shimmer />
-    ) : (
-        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${isMenuOpen ? 'lg:grid-cols-4' : 'lg:grid-cols-5'} gap-4 p-2`}>
-            {videos.map((video , index) => {
+        <ShimmerForSerachResults />
+    ) : (<>
+        <div className="flex flex-col gap-4 p-4">
+            {videos.map((video, index) => {
                 const { snippet } = video;
-                const { channelTitle, thumbnails, title } = snippet;
+                const { channelTitle, thumbnails, title, description } = snippet;
 
                 return (
-                    <Link key={index} to={`/watch?v=${video.id.videoId}`}>
-                        <div className="max-w-xs bg-white rounded-lg shadow-md cursor-pointer overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg duration-300">
-                            <img
-                                src={thumbnails?.medium?.url || '/path/to/default-image.jpg'}
-                                alt={title}
-                                className="w-full h-32 object-fill"
-                            />
-                            <div className="p-2">
-                                <h3 className="text-md font-semibold mb-1 line-clamp-2">{title}</h3>
-                                <p className="text-gray-700 mb-1 text-sm">{channelTitle}</p>
-                            </div>
+                    <Link key={index} to={`/watch?v=${video.id.videoId}`} className="flex gap-4 items-start">
+                        {/* Thumbnail */}
+                        <img
+                            src={thumbnails?.medium?.url}
+                            alt={title}
+                            className="w-[491px] h-[265] object-cover rounded-lg flex-shrink-0"
+                        />
+
+                        {/* Video Info */}
+                        <div className="flex-1">
+                            <h3 className="text-2xl font-semibold text-gray-800 line-clamp-2 hover:text-blue-500">
+                                {title}
+                            </h3>
+                            <p className="text-base text-gray-600 mt-1 hover:text-gray-800">{channelTitle}</p>
+                            <p className="text-sm text-gray-500 mt-2 line-clamp-3 text-wrap">{description}</p>
                         </div>
                     </Link>
                 );
             })}
-            {loading && <Shimmer />}
         </div>
+        </>
     );
 };
 

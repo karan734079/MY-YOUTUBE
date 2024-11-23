@@ -25,7 +25,7 @@ const Comment = ({ data, onReplySubmit }) => {
     };
 
     return (
-        <div className='flex shadow-sm bg-gray-200 p-2 rounded-lg my-2'>
+        <div className='flex shadow-sm p-2 my-2'>
             <img className='w-12 h-12' src={userIcon} alt="user" />
             <div className='px-3'>
                 <p className='font-bold'>{name}</p>
