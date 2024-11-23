@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* styles.css */
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Webkit browsers */
+  display: none;
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none;  /* Hide scrollbar for Internet Explorer and Edge */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

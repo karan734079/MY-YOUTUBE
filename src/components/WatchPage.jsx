@@ -19,7 +19,6 @@ const WatchPage = () => {
   return (
     <div>
       <div className="flex flex-col w-full m-2">
-        {/* Video Player and Live Chat */}
         <div className="px-5 flex w-full">
           <div>
             <iframe
@@ -38,7 +37,6 @@ const WatchPage = () => {
           </div>
         </div>
 
-        {/* Comments and Related Videos */}
         <div className="px-5 flex">
           <div className="w-[1020px]">
             <CommentsContainer videoId={videoId} />

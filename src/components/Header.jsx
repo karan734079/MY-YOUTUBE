@@ -27,7 +27,7 @@ const Header = () => {
             }
         }, 200);
 
-        return () => { 
+        return () => {
             clearTimeout(timer);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +38,7 @@ const Header = () => {
             const url = conf.youtubeSearchApi + encodeURIComponent(searchQuery);
             const response = await axios.get(url);
             setSuggestions(response.data[1]);
-    
+
             dispatch(cacheResults({
                 [searchQuery]: response.data[1],
             }));
@@ -46,7 +46,7 @@ const Header = () => {
             console.error("Error fetching search suggestions:", error);
         }
     };
-    
+
 
     const toggleMenuHandler = () => {
         dispatch(toggleMenu());
@@ -113,7 +113,6 @@ const Header = () => {
                 <img className='h-8' src={userIcon} alt="user" />
             </div>
         </div>
-
     )
 }
 
