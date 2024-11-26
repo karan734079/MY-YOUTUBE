@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
 const Videocard = ({ videoData }) => {
   if (!videoData) return null;
@@ -15,7 +16,11 @@ const Videocard = ({ videoData }) => {
   };
 
   const { snippet, statistics } = videoData;
-  const { channelTitle, thumbnails, title } = snippet;
+  const { channelTitle, thumbnails, title, publishedAt } = snippet;
+
+
+  const relativeTime = formatDistanceToNow(new Date(publishedAt), { addSuffix: true });
+
 
   return (
     <div className="max-w-xs bg-white rounded-lg shadow-md cursor-pointer overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg duration-300">
@@ -26,9 +31,12 @@ const Videocard = ({ videoData }) => {
       />
       <div className="p-2">
         <h3 className="text-md font-semibold mb-1 line-clamp-2">{title}</h3>
-        <p className="text-gray-700 mb-1 text-sm">{channelTitle}</p>
-        <p className="text-gray-500 text-xs">
-          {formatViews(statistics?.viewCount)} views
+        <div className='flex space-x-1 font-semibold'>
+          <img src={thumbnails.medium.url} className='h-6 w-6 rounded-full' alt="" />
+          <p className="text-gray-700 mb-1 text-xs mt-1">{channelTitle}</p>
+        </div>
+        <p className="text-gray-500 text-xs mt-1">
+          {formatViews(statistics?.viewCount)} views | {relativeTime}
         </p>
       </div>
     </div>

@@ -1,303 +1,71 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-const channelData = [
-  "T-Series",
-  "Cocomelon - Nursery Rhymes",
-  "SET India",
-  "PewDiePie",
-  "Kids Diana Show",
-  "Like Nastya",
-  "Vlad and Niki",
-  "5-Minute Crafts",
-  "Zee Music Company",
-  "Aaj Tak",
-  "EmoGamer",
-  "T-Series Bhakti Sagar",
-  "Sony Music India",
-  "Marshmello",
-  "Dude Perfect",
-  "Bad Bunny",
-  "Whindersson Nunes",
-  "Markiplier",
-  "Katy Perry",
-  "Justin Bieber",
-  "BTS",
-  "Blackpink",
-  "Shakira",
-  "Ariana Grande",
-  "Taylor Swift",
-  "The Ellen Show",
-  "VanossGaming",
-  "JuegaGerman",
-  "Fernanfloo",
-  "Logan Paul",
-  "James Charles",
-  "Ninja",
-  "Lindsey Stirling",
-  "DanTDM",
-  "Emma Chamberlain",
-  "MrBeast",
-  "Jake Paul",
-  "KSI",
-  "Vikkstar123",
-  "FIFA 21",
-  "WWE",
-  "PewDiePie T-Series",
-  "Brianna",
-  "NigaHiga",
-  "Jacksepticeye",
-  "Roman Atwood Vlogs",
-  "Ray William Johnson",
-  "Rihanna",
-  "Billie Eilish",
-  "Dwayne Johnson",
-  "Selena Gomez",
-  "Chris Brown",
-  "Ed Sheeran",
-  "Shane Dawson TV",
-  "Smosh",
-  "Good Mythical Morning",
-  "Mark Rober",
-  "Logan Paul Vlogs",
-  "Walt Disney Animation Studios",
-  "National Geographic",
-  "Dream",
-  "Corpse Husband",
-  "Zane Hijazi",
-  "Liza Koshy",
-  "Tati Westbrook",
-  "Jackie Aina",
-  "Vanity Fair",
-  "Vox",
-  "BBC Earth",
-  "HBO Max",
-  "Netflix",
-  "Disney+",
-  "Paramount Pictures",
-  "Hannah Montana",
-  "The Tonight Show Starring Jimmy Fallon",
-  "CNET",
-  "The Late Show with Stephen Colbert",
-  "Vox Media",
-  "Full House",
-  "NBCUniversal",
-  "Instagram",
-  "TikTok",
-  "YouTube Official",
-  "T-Series",
-  "Cocomelon - Nursery Rhymes",
-  "SET India",
-  "PewDiePie",
-  "Kids Diana Show",
-  "Like Nastya",
-  "Vlad and Niki",
-  "5-Minute Crafts",
-  "Zee Music Company",
-  "Aaj Tak",
-  "EmoGamer",
-  "T-Series Bhakti Sagar",
-  "Sony Music India",
-  "Marshmello",
-  "Dude Perfect",
-  "Bad Bunny",
-  "Whindersson Nunes",
-  "Markiplier",
-  "Katy Perry",
-  "Justin Bieber",
-  "BTS",
-  "Blackpink",
-  "Shakira",
-  "Ariana Grande",
-  "Taylor Swift",
-  "The Ellen Show",
-  "VanossGaming",
-  "JuegaGerman",
-  "Fernanfloo",
-  "Logan Paul",
-  "James Charles",
-  "Ninja",
-  "Lindsey Stirling",
-  "DanTDM",
-  "Emma Chamberlain",
-  "MrBeast",
-  "Jake Paul",
-  "KSI",
-  "Vikkstar123",
-  "FIFA 21",
-  "WWE",
-  "PewDiePie T-Series",
-  "Brianna",
-  "NigaHiga",
-  "Jacksepticeye",
-  "Roman Atwood Vlogs",
-  "Ray William Johnson",
-  "Rihanna",
-  "Billie Eilish",
-  "Dwayne Johnson",
-  "Selena Gomez",
-  "Chris Brown",
-  "Ed Sheeran",
-  "Shane Dawson TV",
-  "Smosh",
-  "Good Mythical Morning",
-  "Mark Rober",
-  "Logan Paul Vlogs",
-  "Walt Disney Animation Studios",
-  "National Geographic",
-  "Dream",
-  "Corpse Husband",
-  "Zane Hijazi",
-  "Liza Koshy",
-  "Tati Westbrook",
-  "Jackie Aina",
-  "Vanity Fair",
-  "Vox",
-  "BBC Earth",
-  "HBO Max",
-  "Netflix",
-  "Disney+",
-  "Paramount Pictures",
-  "Hannah Montana",
-  "The Tonight Show Starring Jimmy Fallon",
-  "CNET",
-  "The Late Show with Stephen Colbert",
-  "Vox Media",
-  "Full House",
-  "NBCUniversal",
-  "Instagram",
-  "TikTok",
-  "YouTube Official",
-  "T-Series",
-  "Cocomelon - Nursery Rhymes",
-  "SET India",
-  "PewDiePie",
-  "Kids Diana Show",
-  "Like Nastya",
-  "Vlad and Niki",
-  "5-Minute Crafts",
-  "Zee Music Company",
-  "Aaj Tak",
-  "EmoGamer",
-  "T-Series Bhakti Sagar",
-  "Sony Music India",
-  "Marshmello",
-  "Dude Perfect",
-  "Bad Bunny",
-  "Whindersson Nunes",
-  "Markiplier",
-  "Katy Perry",
-  "Justin Bieber",
-  "BTS",
-  "Blackpink",
-  "Shakira",
-  "Ariana Grande",
-  "Taylor Swift",
-  "The Ellen Show",
-  "VanossGaming",
-  "JuegaGerman",
-  "Fernanfloo",
-  "Logan Paul",
-  "James Charles",
-  "Ninja",
-  "Lindsey Stirling",
-  "DanTDM",
-  "Emma Chamberlain",
-  "MrBeast",
-  "Jake Paul",
-  "KSI",
-  "Vikkstar123",
-  "FIFA 21",
-  "WWE",
-  "PewDiePie T-Series",
-  "Brianna",
-  "NigaHiga",
-  "Jacksepticeye",
-  "Roman Atwood Vlogs",
-  "Ray William Johnson",
-  "Rihanna",
-  "Billie Eilish",
-  "Dwayne Johnson",
-  "Selena Gomez",
-  "Chris Brown",
-  "Ed Sheeran",
-  "Shane Dawson TV",
-  "Smosh",
-  "Good Mythical Morning",
-  "Mark Rober",
-  "Logan Paul Vlogs",
-  "Walt Disney Animation Studios",
-  "National Geographic",
-  "Dream",
-  "Corpse Husband",
-  "Zane Hijazi",
-  "Liza Koshy",
-  "Tati Westbrook",
-  "Jackie Aina",
-  "Vanity Fair",
-  "Vox",
-  "BBC Earth",
-  "HBO Max",
-  "Netflix",
-  "Disney+",
-  "Paramount Pictures",
-  "Hannah Montana",
-  "The Tonight Show Starring Jimmy Fallon",
-  "CNET",
-  "The Late Show with Stephen Colbert",
-  "Vox Media",
-  "Full House",
-  "NBCUniversal",
-  "Instagram",
-  "TikTok",
-  "YouTube Official",
-];
-
+import axios from 'axios';
+import conf from '../utils/conf';
 
 const Sidebar = ({ isWatchPage, isMenuOpen }) => {
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    // Fetch channels when the component mounts
+    const fetchChannels = async () => {
+      try {
+        const response = await axios.get(`${conf.youtubeVideoApi}${conf.googleApi}`);
+        setChannels(response?.data?.items);
+      } catch (error) {
+        console.error('Error fetching channels:', error);
+      }
+    };
+
+    fetchChannels();
+  }, []);
 
   // Early return if the menu is closed
   if (!isMenuOpen) return null;
 
   return (
     <div
-      className={`p-5 w-48 shadow-lg bg-white ${
-        isWatchPage ? 'absolute' : 'relative'
-      }`}
+      className={`p-5 w-48 shadow-lg bg-white cursor-pointer ${isWatchPage ? 'absolute' : 'relative'
+        }`}
     >
-      <ul>
+      <ul className='border-b-2'>
         <Link to="/">
-          <li>Home</li>
+          <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Home</li>
         </Link>
-        <li>Shorts</li>
-        <li>Videos</li>
-        <li>Live</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Shorts</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Videos</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800 mb-2'>Live</li>
       </ul>
 
-      <h1 className="font-bold pt-4 text-xl">Subscriptions</h1>
-      <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
+      <h1 className="font-bold pt-2 text-xl">Subscriptions</h1>
+      <ul className='border-b-2'>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Music</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Sports</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Gaming</li>
+        <li className='text-base text-gray-600 font-semibold hover:text-gray-800 mb-2'>Movies</li>
       </ul>
 
-      <h1 className="font-bold pt-4 text-xl">Watch Later</h1>
-      <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
-      </ul>
-
-      <h1 className="font-bold pt-4 text-lg">Popular Channels</h1>
+      <h1 className="font-bold pt-2 text-lg">Popular Channels</h1>
       <ul className="space-y-2">
-        {channelData.map((channel, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            <span>{channel}</span>
-          </li>
-        ))}
+        {channels.map((channel, index) => {
+          const { snippet } = channel;
+          const { channelTitle, thumbnails } = snippet;
+
+          return (
+            <div className="flex mt-2 items-center space-x-2 cursor-pointer" key={index}>
+              <img
+                src={thumbnails?.default?.url}
+                alt=""
+                className="h-6 w-6 rounded-full"
+              />
+              <p className="text-base text-gray-600 font-semibold hover:text-gray-800">
+                {channelTitle}
+              </p>
+            </div>
+          );
+        })
+        }
       </ul>
     </div>
   );
