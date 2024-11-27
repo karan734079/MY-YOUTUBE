@@ -30,7 +30,7 @@ const LiveChat = () => {
         logo: 'K',
         name: 'Karan(me)',
         message: userMessage,
-        emoji: "",  
+        emoji: "",
       }));
       setUserMessage('');
     }
