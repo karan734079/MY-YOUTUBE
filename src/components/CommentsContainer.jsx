@@ -134,7 +134,7 @@ const CommentsContainer = ({ videoId }) => {
         };
 
         fetchComments();
-    }, [videoId]); 
+    }, [videoId]);
 
     const handleReplySubmit = (parentId, replyText) => {
         const newReply = {
