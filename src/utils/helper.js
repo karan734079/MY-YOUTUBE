@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 const quotes = [
     "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
     "Silly things do cease to be silly if they are done by sensible people in an impudent way.",
@@ -29,27 +27,6 @@ export const getRandomEmoji = () => {
     const randomIndex = Math.floor(Math.random() * emoji.length);
     return emoji[randomIndex];
 }
-
-export const QuoteGenerator = () => {
-    const [quote, setQuote] = useState(getRandomQuote());
-
-    const handleNewQuote = () => {
-        setQuote(getRandomQuote());
-    };
-
-    useEffect(() => {
-        // Optionally: Set an interval to change the quote every 5 seconds
-        const intervalId = setInterval(handleNewQuote, 5000);
-        return () => clearInterval(intervalId);
-    }, []);
-
-    return (
-        <div>
-            <p>{quote}</p>
-            <button onClick={handleNewQuote}>Get New Quote</button>
-        </div>
-    );
-};
 
 
 var nameList = [
