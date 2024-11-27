@@ -25,7 +25,7 @@ const LiveChat = () => {
   const handleSendMessage = (e) => {
     e.preventDefault();
 
-    if (userMessage.trim()) {
+    if (userMessage) {
       dispatch(addMessage({
         logo: 'K',
         name: 'Karan(me)',
