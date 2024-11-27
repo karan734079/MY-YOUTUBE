@@ -24,6 +24,7 @@ const VideoContainer = () => {
     } finally {
       setLoading(false);
     }
+
   }, []);
 
   useEffect(() => {
@@ -54,7 +55,8 @@ const VideoContainer = () => {
       ) : (
         <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${isMenuOpen ? 'lg:grid-cols-4' : 'lg:grid-cols-5'} gap-4 p-2`}>
           {videos.map((video, index) => (
-            <Link key={index} to={`/watch?v=${video.id}`}>
+            // <Link key={index} to={`/watch?v=${video.id}&channelTitle=${}&title=${}&thumbnails=${}`}>
+            <Link key={index} to={`/watch?v=${video.id}&channelTitle=${video?.snippet?.channelTitle}&title=${video?.snippet?.title}&thumbnails=${video?.snippet?.thumbnails?.default?.url}&views=${video?.statistics?.viewCount}`}>
               <Videocard videoData={video} />
             </Link>
           ))}

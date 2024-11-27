@@ -2,6 +2,7 @@ import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 const Videocard = ({ videoData }) => {
+  //Early return
   if (!videoData) return null;
 
   const formatViews = (views) => {
