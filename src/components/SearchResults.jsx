@@ -22,7 +22,7 @@ const SearchResults = () => {
         setError(null);
         try {
             const response = await axios.get(
-                `${"https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=28&q="}${encodeURIComponent(query)}&key=${conf.googleApi}`
+                `${"https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=28&q="}${query}&key=${conf.googleApi}`
             );
             setVideos(response.data.items);
         } catch (error) {

@@ -35,7 +35,7 @@ const Header = () => {
 
     const getSearchSuggestions = async () => {
         try {
-            const url = conf.youtubeSearchApi + encodeURIComponent(searchQuery);
+            const url = conf.youtubeSearchApi + searchQuery;
             const response = await axios.get(url);
             setSuggestions(response.data[1]);
 
