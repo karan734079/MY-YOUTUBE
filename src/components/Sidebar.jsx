@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import conf from '../utils/conf';
 
@@ -30,9 +29,9 @@ const Sidebar = ({ isWatchPage, isMenuOpen }) => {
         }`}
     >
       <ul className='border-b-2'>
-        <Link to="/">
+        <a href="/">
           <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Home</li>
-        </Link>
+        </a>
         <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Shorts</li>
         <li className='text-base text-gray-600 font-semibold hover:text-gray-800'>Videos</li>
         <li className='text-base text-gray-600 font-semibold hover:text-gray-800 mb-2'>Live</li>

@@ -43,7 +43,6 @@ const SearchResults = () => {
                 {videos.map((video, index) => {
                     const { snippet } = video;
                     const { channelTitle, thumbnails, title, description, publishedAt } = snippet;
-
                     const relativeTime = formatDistanceToNow(new Date(publishedAt), { addSuffix: true });
 
                     return (

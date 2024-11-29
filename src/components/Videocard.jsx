@@ -16,20 +16,24 @@ const Videocard = ({ videoData }) => {
     return views;
   };
 
-  const { snippet, statistics } = videoData;
+  const { snippet, statistics , contentDetails } = videoData;
   const { channelTitle, thumbnails, title, publishedAt } = snippet;
 
 
   const relativeTime = formatDistanceToNow(new Date(publishedAt), { addSuffix: true });
 
+  const timing = contentDetails?.duration.replace("PT","");
+  const tim = timing.replace("M",":");
+  const timee = tim.replace("S","");
 
   return (
     <div className="max-w-xs bg-white rounded-lg shadow-md cursor-pointer overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg duration-300">
       <img
         src={thumbnails.medium.url}
         alt={title}
-        className="w-full h-32 object-fill"
+        className="w-full h-32 object-fill relative"
       />
+      <p className='absolute top-[95px] ml-[252px] py-[2px] px-2 text-white text-sm rounded-md bg-opacity-60 bg-black '>{timee}</p>
       <div className="p-2">
         <h3 className="text-md font-semibold mb-1 line-clamp-2">{title}</h3>
         <div className='flex space-x-1 font-semibold'>

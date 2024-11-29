@@ -19,6 +19,7 @@ const VideoContainer = ({selectedFilter}) => {
       const response = await axios.get(`${conf.youtubeVideoApi}${conf.googleApi}&pageToken=${pageToken}`);
       setVideos((prevVideos) => [...prevVideos, ...response.data.items]);
       setNextPageToken(response.data.nextPageToken);
+      console.log(response.data.items[0]);
     } catch (error) {
       console.error("Error fetching videos:", error);
     } finally {
